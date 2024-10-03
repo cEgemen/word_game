@@ -8,6 +8,11 @@ module.exports = buildSchema(
                                    email : String!
                                    password : String! 
                      } 
+              
+           type LoginData {
+                                    token : String!
+                                    userId : String!
+                          }          
       
            input UserDataInput {
                                    name : String!
@@ -20,6 +25,7 @@ module.exports = buildSchema(
 
            type RootMutation{
                                signUp(userData : UserDataInput!):User!
+                               logIn(userData : UserDataInput!) : LoginData!
                             }
        
            schema 

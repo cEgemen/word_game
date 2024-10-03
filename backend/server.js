@@ -8,7 +8,7 @@ const mongoose = require("mongoose")
 
 
 const app = express()
-const MONGO_URL = "YOUR_MongoDB_URL"
+const MONGO_URL = "YOUR_MONGODB_KEY"
 
 app.use((req,res,next) => {
        res.setHeader("Access-Control-Allow-Methods","POST,GET,OPTIONS,DELETE,PUT")
