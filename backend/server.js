@@ -6,7 +6,7 @@ const mongoose = require("mongoose")
 
 
 const app = express()
-const MONGO_URL = "mongodb+srv://egemen:EkYaKj9ESRcGDSVs@cluster0.z9mcl.mongodb.net/game?retryWrites=true&w=majority&appName=Cluster0"
+const MONGO_URL = "yout_mongoDB_url"
 
 app.use((req,res,next) => {
        res.setHeader("Access-Control-Allow-Methods","POST,GET,OPTIONS,DELETE,PUT")
