@@ -21,15 +21,15 @@ app.use("/api",graphqlHTTP({
       schema : schemas,
       rootValue : resolvers,
       graphiql : true,
-      formatError : (err) => {
-                if(!err.originalError)
-                {
-                     return err
-                }
-                 const statusCode = err.originalError.statusCode
-                 const  message  = err.originalError.message
-                 const  messages = err.originalError.messages
-                 return {statusCode, message , messages}
+      customFormatErrorFn : (err) => {
+          if(!err.originalError)
+               {
+                    return err
+               }
+                const statusCode = err.originalError.statusCode
+                const  message  = err.originalError.message
+                const  messages = err.originalError.messages
+                return {statusCode, message , messages}
       }
 }))
 
