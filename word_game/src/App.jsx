@@ -1,11 +1,11 @@
-import Login from "./pages/login"
-import SingUp from "./pages/signup"
+import routes from "./paths"
+import {RouterProvider} from "react-router-dom"
 
 function App() {
 
   return (
     <>
-       <SingUp />
+       <RouterProvider router={routes} />
     </>
   )
 }

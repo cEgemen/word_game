@@ -1,23 +1,42 @@
-import { InputText } from 'primereact/inputtext';
-import {Button} from "primereact/button"
-import useFormHook from '../../hooks/form';
+import Form from "../components/form"
+
 
 export default function Login () {
-          const [formState , onChangeInput ] = useFormHook({name:"",email:"",password:""})
           const loginSubmit = (event) => {
-                      event.preventDefault()
-                      
+                      console.log("target : ",event.target)
+                      event.preventDefault()  
+                      const formData = new FormData(event.target)
+                      const data = Object.fromEntries(formData.entries())
+                                   const graphQuery = 
+                                                   { query:  `  mutation {
+                                                                      logIn(userData : {name : "${data.name}",email : "${data.email}",password : "${data.password}"})
+                                                                      {
+                                                                         token
+                                                                         userId 
+                                                                      }
+                                                                  }
+                                                      `}
+                                   fetch("http://localhost:3000/api",{
+                                               method:"POST",
+                                               headers : {
+                                                      "Content-Type" : "application/json"
+                                               },
+                                               body : JSON.stringify(graphQuery)
+                                   })
+                                   .then(jsonData => {
+                                         return jsonData.json()
+                                   })
+                                   .then(result => {
+                                         console.log("result : ",result)
+                                   })
+                                   .catch(err => {
+                                        console.log(err)
+                                   })    
           }
-
+          console.log("login")
           return <div className="h-full grid m-0">
                           <div className="col-12  md:col-6">
-                                   <form className='h-full flex flex-column justify-content-center gap-3'>
-                                         <h1>Log In</h1>
-                                         <InputText id='name' name='name' onChange={onChangeInput} value={formState.name} />
-                                         <InputText id='email' name='email' onChange={onChangeInput} value={formState.email}/>
-                                         <InputText id='password' name='password' onChange={onChangeInput} value={formState.password}/>
-                                         <Button type='submit' onClick={loginSubmit}>Log In </Button>
-                                   </form>
+                                   <Form formButtonText="Log In" headTitle= "LOG IN" onSubmit={loginSubmit} />
                           </div>
                           <div className="col-0 md:col-6 ">
                                        

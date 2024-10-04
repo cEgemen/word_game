@@ -24,7 +24,7 @@ module.exports = buildSchema(
                           }
 
            type RootMutation{
-                               signUp(userData : UserDataInput!):User!
+                               signUp(userData : UserDataInput!):User
                                logIn(userData : UserDataInput!) : LoginData!
                             }
        

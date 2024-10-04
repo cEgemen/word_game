@@ -8,6 +8,7 @@ const SECRET_KEY = "s*cr*t_s*cr*t"
 module.exports = {
                    signUp : async ({userData}) => {
                                   const {name,email,password} = userData
+                                  console.log("name : ",name , " || email : ",email , " || password : ",password)
                                   const validationMessages = []
                                   const existUser = await User.findOne({email : email})
                                          if(existUser)
@@ -27,7 +28,7 @@ module.exports = {
                                      }
                                     if (!validator.isLength(password,{min:6}))
                                     { 
-                                              validationMessages.push({message : "Password is must be 6 length"})
+                                           validationMessages.push({message : "Password is must be 6 length"})
                                     }
                                      if(validationMessages.length > 0)
                                      {

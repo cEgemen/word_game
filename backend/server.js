@@ -14,8 +14,13 @@ app.use((req,res,next) => {
        res.setHeader("Access-Control-Allow-Methods","POST,GET,OPTIONS,DELETE,PUT")
        res.setHeader("Access-Control-Allow-Origin","*")
        res.setHeader("Access-Control-Allow-Headers","Content-Type,Authorization")
-       next()
-})
+       if(req.method === "OPTIONS")
+       {
+          res.sendStatus(200)
+          return
+       }
+       next()  
+}) 
 
 app.use("/api",graphqlHTTP({
       schema : schemas,
