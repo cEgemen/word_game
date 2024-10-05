@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom"
-import Form from "../components/form"
+import RecordsForm from "../components/forms/recordsForm"
 import {userActions} from "../management/userSlice"
 import { useDispatch } from "react-redux"
 import {storeToken} from "../utils/token"
@@ -44,7 +44,7 @@ export default function Login () {
           }
           return <div className="h-full grid m-0">
                           <div className="col-12  md:col-6 p-0">
-                                   <Form formButtonText="Log In" headTitle= "LOG IN" onSubmit={loginSubmit} />
+                                   <RecordsForm formButtonText="Log In" headTitle= "LOG IN" onSubmit={loginSubmit} />
                           </div>
                           <div className="col-0 md:col-6 p-0">
                                        

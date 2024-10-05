@@ -1,6 +1,7 @@
 const express = require("express")
 const bodyParser = require("body-parser")
 const multer = require("multer")
+const {authCheck} = require("./middleware/auth")
 const {graphqlHTTP} = require("express-graphql")
 const schemas = require("./graphql/schemas")
 const resolvers = require("./graphql/resolvers")
@@ -21,6 +22,10 @@ app.use((req,res,next) => {
        }
        next()  
 }) 
+
+app.use(bodyParser.json())
+
+app.use(authCheck)
 
 app.use("/api",graphqlHTTP({
       schema : schemas,

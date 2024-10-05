@@ -20,6 +20,12 @@ module.exports = buildSchema(
                                    email : String!
                                    password : String!
                                } 
+            
+            input LobbyDataInput {
+                                    lobby : Int!
+                                    nick  : String!
+                                 }                    
+                               
            type RootQuery {
                               getUsers : [User]!
                           }
@@ -27,6 +33,7 @@ module.exports = buildSchema(
            type RootMutation{
                                signUp(userData : UserDataInput!):User
                                logIn(userData : UserDataInput!) : LoginData!
+                               updateLobby(lobbyData : LobbyDataInput!) : Boolean
                             }
        
            schema 

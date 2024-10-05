@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import Form from '../components/form';
+import RecordsForm from '../components/forms/recordsForm';
 
 export default function SingUp () {
     const navigate = useNavigate()
@@ -38,7 +38,7 @@ export default function SingUp () {
 
     return <div className="h-full grid m-0">
                     <div className="col-12  md:col-6">
-                            <Form formButtonText="Sign Up" headTitle="SIGN UP" onSubmit={signUpSubmit} />
+                            <RecordsForm formButtonText="Sign Up" headTitle="SIGN UP" onSubmit={signUpSubmit} />
                     </div>
                     <div className="col-0 md:col-6 ">
                                  

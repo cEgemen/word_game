@@ -104,6 +104,10 @@ module.exports = {
 
                     },
 
+                    updateLobby : async ({lobyData}) => {
+                              const  {nick,lobby}  = lobyData  
+                    },
+
                     getUser : (args) => {
                                    
                            return []
