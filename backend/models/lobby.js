@@ -9,16 +9,16 @@ const LobbySchema = new Schema({
                          ref : "User"
                      },
             lobby : {
-                 type : SchemaTypes.Number
+                         type : SchemaTypes.Number
                     },         
             nick : {
-                 type : String
+                         type : String
                    },
             isActive : {
-                 type : Boolean
+                        type : Boolean
                        },
             isGame : {
-                 type : Boolean
+                       type : Boolean
                      }
            }
                    ] 

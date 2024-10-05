@@ -1,4 +1,5 @@
 const User = require("../models/user")
+const Lobby = require("../models/lobby")
 const validator = require("validator")
 const jwt = require("jsonwebtoken")
 const bcrypt = require("bcryptjs")
@@ -104,8 +105,22 @@ module.exports = {
 
                     },
 
-                    updateLobby : async ({lobyData}) => {
-                              const  {nick,lobby}  = lobyData  
+                    updateLobby : async ({lobbyData},req) => {
+                              const {lobby,nick} = lobbyData
+                              console.log("lobby : ",lobby , " || nick : ",nick)
+                              if(!req.isAuth)
+                              {
+                                 const err = new Error("You is not authantication")
+                                       err.statusCode = 401
+                                       err.messages = []
+                                       throw err;
+                              }
+                              const lobyDbArr = await Lobby.find()
+                              const lobbyDb = lobyDbArr[0]
+                                    lobbyDb.users.push({userId : req.userId , lobby, nick , isActive : true,isGame: false})
+                                    console.log("lobbyBb : ",lobbyDb)
+                                    await lobbyDb.save()
+                                    return true
                     },
 
                     getUser : (args) => {

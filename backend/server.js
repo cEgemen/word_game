@@ -1,4 +1,5 @@
 const express = require("express")
+const Lobby = require("./models/lobby")
 const bodyParser = require("body-parser")
 const multer = require("multer")
 const {authCheck} = require("./middleware/auth")
@@ -49,9 +50,31 @@ app.use((err , req , res , next ) => {
 
 mongoose.connect(MONGO_URL)
         .then(result => {
-            app.listen(3000 , () => {
+            Lobby.find()
+                 .then(lobbyArr => {
+                      if(lobbyArr.length === 1)
+                      {
+                         app.listen(3000 , () => {
                 console.log("server is running ...")
-             })  
+                                               }) 
+                      }
+                      else{
+                           const newLobby = new Lobby({users : []})
+                                 newLobby.save()
+                                         .then(lobby => {
+                                             app.listen(3000 , () => {
+                                                  console.log("server is running ...")
+                                                                                 }) 
+                                         })
+                                         .catch(err => {
+                                              console.log("err : ",err)
+                                         })
+                      }
+                 })
+                 .catch(err => {
+                    console.log("err => ",err)
+                 })
+             
         })
         .catch(err => {
              console.log("err : ",err)
