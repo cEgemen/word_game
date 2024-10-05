@@ -8,7 +8,6 @@ const SECRET_KEY = "s*cr*t_s*cr*t"
 module.exports = {
                    signUp : async ({userData}) => {
                                   const {name,email,password} = userData
-                                  console.log("name : ",name , " || email : ",email , " || password : ",password)
                                   const validationMessages = []
                                   const existUser = await User.findOne({email : email})
                                          if(existUser)
@@ -91,8 +90,8 @@ module.exports = {
                                                          err.messages = []
                                                          throw err
                                                }
-                                               const token = jwt.sign({_id : existUser._id,password,email},SECRET_KEY)
-                                               return {token , userId : existUser._id.toString()}
+                                               const token = jwt.sign({_id : existUser._id,password,email},SECRET_KEY,{expiresIn : "1h"})
+                                               return {token , userId : existUser._id.toString(),name : existUser.name}
                                                
                                         }
                                         catch(err)

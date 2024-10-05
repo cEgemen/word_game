@@ -12,6 +12,7 @@ module.exports = buildSchema(
            type LoginData {
                                     token : String!
                                     userId : String!
+                                    name : String!
                           }          
       
            input UserDataInput {

@@ -1,20 +1,22 @@
+import { useNavigate } from 'react-router-dom';
 import Form from '../components/form';
 
 export default function SingUp () {
+    const navigate = useNavigate()
     const signUpSubmit = (event) => {
                 event.preventDefault()
                 const formData = new FormData(event.target)
                 const data = Object.fromEntries( formData.entries())
                 console.log("data : ",data)
                 const graphQuery = {
-                    query: `
+                    query:
+                            `
                     mutation {
                            signUp(userData : {name: "${data.name}" , email : "${data.email}", password : "${data.password}"}){
                                         _id
                                }
                              }
-
-                          `
+                           `
                                  }
                 fetch("http://localhost:3000/api",{
                      method:"POST",
@@ -27,7 +29,7 @@ export default function SingUp () {
                        return res.json()
                 })
                 .then(resultData => {
-                     console.log("resultData : ",resultData)
+                     navigate("/")
                 })
                 .catch(err => {
                     console.log("err : ",err)
